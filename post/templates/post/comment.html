@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Comments for: {{ post.title }}</h2>
+
+{% if user.is_authenticated %}
+    <!-- Comment Form for Logged-in Users -->
+    <form action="{% url 'post_comment' post.id %}" method="POST">
+        {% csrf_token %}
+        
+        
+        <textarea name="text" placeholder="Write your comment here..."></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'login' %}">Log in</a> to post a comment.</p>
+{% endif %}
+
+<!-- Display Comments -->
+<h3>All Comments</h3>
+<ul>
+    {% for comment in comments %}
+        <li><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</li>
+    {% empty %}
+        <li>No comments yet. Be the first to comment!</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

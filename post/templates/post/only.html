@@ -1,0 +1,7 @@
+<h1>{{ only.title }}</h1>
+<p>{{ only.content }}</p>
+<p>{{ only.created }}</p> 
+ The only.html template is used to display a single post. It uses the  only  context variable to access the post data. 
+ The  only  context variable is passed to the template by the  post_only  view function. 
+ The  post_only  view function is used to display a single post. It retrieves the post data from the database and passes it to the template. 
+ # blog/views.py
